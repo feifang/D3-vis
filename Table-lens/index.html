@@ -39,6 +39,7 @@ tbody text {
   font-size: 10px;
   text-align: left;
   text-shadow: 0 1px 0 #fff;
+	pointer-events: auto;
 }
 tbody tr:hover rect {
   fill: brown;
@@ -110,12 +111,17 @@ d3.csv("nation-edited-numberic.csv", function(error, states) {
     .on("mouseover", function mouseOver(d, i){
       //row
       d3.select(this).selectAll("td").selectAll("svg").style({"height": 50});
+      d3.select(this).selectAll("td").selectAll("svg").selectAll("text").style({"font-size": 20});
+      d3.select(this).selectAll("td").selectAll("svg").selectAll("text").style({"dominant-baseline": "central"});
       d3.select(this).selectAll("td").selectAll("svg").selectAll("rect").style({"height": 50});
       //d3.select(this).selectAll("td").selectAll("svg").selectAll("text").style({"font-size": 20});  //need to align to center
       //column
     })
     .on("mouseout", function mouseOver(d, i){
       d3.select(this).selectAll("td").selectAll("svg").style({"height": 20});
+      d3.select(this).selectAll("td").selectAll("svg").selectAll("text").style({"font-size": 10});
+      d3.select(this).selectAll("td").selectAll("svg").selectAll("text").style({"font-size": 10});
+      d3.select(this).selectAll("td").selectAll("svg").selectAll("text").style({"dominant-baseline": "auto"});
       d3.select(this).selectAll("td").selectAll("svg").selectAll("rect").style({"height": 20});
     });
 
@@ -137,6 +143,7 @@ d3.csv("nation-edited-numberic.csv", function(error, states) {
           var col = this.id;
           if(col == chosenCol){
             var width = d/100*200;
+            //d3.select(this).selectAll("text").style({"font-size": 20});
             d3.select(this).selectAll("rect").style({"width": width});
             return 200;
           }
@@ -148,6 +155,7 @@ d3.csv("nation-edited-numberic.csv", function(error, states) {
           var col = this.id;
           if(col == chosenCol){
             var width = d;
+            //d3.select(this).selectAll("text").style({"font-size": 10});
             d3.select(this).selectAll("rect").style({"width": width});
             return 100;
           }
